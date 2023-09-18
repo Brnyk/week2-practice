@@ -28,3 +28,10 @@ button{
     left: 50%; 
     transform: translate(-50%,-50%); /* Moves away the element that much from itself */
 }
+
+span{
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
