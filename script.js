@@ -1,93 +1,51 @@
-/* let stringVariable = "text"
-let numberVariable = 15;
-let booleanVariable = true;
+console.log("loaded");
 
-function myFunc (param1, param2){
-    return param1 + param2;
-}
+let rootElement = document.querySelector("#root");
 
-console.log(stringVariable, numberVariable, booleanVariable) */
+/* console.log(rootElement) */
 
-/* let array = ["alma", 12, false, undefined, null]
+// let htmlContent = "<h2>Hello world </h2>";
 
-console.log(array) */
+/* let counter = 0;
 
-/* let stringArray = ["Imola Ács", "Pali Herrer", "Nagy Zsombor", "Bokor Ágota"] 
+while (counter < 10){
+    rootElement.insertAdjacentHTML('beforeend', htmlContent)
+    counter++;
+} */
 
-console.log(stringArray[0]) */
-
-/* let myObj = {
-    key1: "value1",
-    key2: "value2",
-    key3: "value3",
-    key4: 15,
-    key5: 600,
-    key6: true,
-    key7: ["Imola Ács", "Pali Herrer", "Nagy Zsombor", "Bokor Ágota"]
-}
-
-console.log(myObj.key3) */
-
-/* let myFacebook = {
-  name: "Hornyák Bence",
-  age: "25",
-  location: "Miskolc",
-  friends: ["Gipsz Jakab", "John Doe", "Példa Péter"],
-  favoriteMovies: [
-    {
-      title: "Superbad",
-      year: 2008,
-      characters: ["McLovin", "Micheal Cera", "Jonah Hill"],
-    },
-    {
-      title: "Ananász Expressz",
-      year: 2012,
-      characters: ["Csoki", "Gaben", "Sanyi"],
-    },
-    {},
-  ],
-};
-
-console.log(myFacebook.favoriteMovies[0].characters[1]); */   /* Házi -> Tömböt gyártani, minél kombináltabbat, komolyabbat, peacesebbet -> Ital kiválasztó? Minőségileg tömbösíteni?*/
+/* a for az egyszerűbb */
+//              0       1       2       3       4       5        6
+/* let array = ["alma", "körte", "szilva", "eper", "birs", "vegyes", "törköly"]
 
 
-/* Objektum: {} Összefüggnek,összetartoznak , Tömb []*/
+//                               7
+for (let index = 0; index < array.length; index++) {
+    rootElement.insertAdjacentHTML('beforeend', `<h2> ${array[index]} </h2>`);
+} */
 
-function logger(text){
-    console.log(text)
-}
+// fetchnek mindig kettő then kell
 
-function negativeOrPositive(number){
-    if (number < 0) {
-        return "negative"
-    } else if (number > 0) {
-        return "positive"
-    } else {
-        return "zero"
+fetch("https://restcountries.com/v3.1/all")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data); // itt tudunk a kapott adattal dolgozni
+
+    for (let index = 0; index < data.length; index++) {
+      let countryName = data[index].name.common;
+      let countryPop = data[index].population;
+      let countryArea = data[index].area;
+
+      rootElement.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class = "country">
+            <h2> ${countryName} </h2>
+            <p> population: ${countryPop} </p>
+            <p> area: ${countryArea}km2 </p>
+        </div>
+        `
+      );
     }
-}
-// logger(negativeOrPositive())
-
-function decideIfBeerIsGood(beer){
-    if(beer.price < 340 && beer.abv > 4.7) {
-    return beer.name + ": jó sör mert olcsó és üt"
-    } else if (beer.price < 340) {
-        return beer.name + ": jó mert olcsó"
-    } else if (beer.abv > 4.7) {
-        return beer.name + ": jó sör mert üt"
-    } else {
-        return beer.name + ": nem jó"
-    }
-}
-
-let dreher = { name:"Dreher", price: 349, abv: 5}
-let soproni = { name:"Soproni", price: 329, abv: 4.5}
-let borsodi = {name:"Borsodi", price: 339, abv: 4.8}
-let pecsi = { name:"Pécsi", price: 400, abv: 3.5}
-
-
-
-logger(decideIfBeerIsGood(dreher))
-logger(decideIfBeerIsGood(soproni))
-logger(decideIfBeerIsGood(borsodi))
-logger(decideIfBeerIsGood(pecsi))
+  });

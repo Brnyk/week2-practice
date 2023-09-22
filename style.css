@@ -1,37 +1,37 @@
-/* --- CSS RESET --- */
 * {
     margin: 0;
     padding: 0;
     border: 0;
+    
+    box-sizing: border-box;
 }
 
-/* --- CSS RESET END --- */
+#root {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    gap: 50px;  
+    justify-content: center;
+    align-items: center;
 
-body{
-    background-color: #FFEEDF;
+    padding: 20px;
 }
 
-button{
-    background-color: #1C5A4E;
-    width: 240px;
-    height: 240px;
+.country {
+    width: 300px;
+    min-height: 160px;
 
-    border-radius: 120px;
-
-    color:#FFEEDF;
-    font-size: 200px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-
-    position: absolute; /* Taking the element out of the rendering flow */
-    top: 50%; /* Placing the element that much away from the top edge of the viewport */
-    left: 50%; 
-    transform: translate(-50%,-50%); /* Moves away the element that much from itself */
+    padding: 20px;
+    
+    border: 10px double black;
 }
 
-span{
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+.country h2{
+    min-height: 80px;
+
+    text-align: center;
+}
+
+.country p{
+    text-align: center;
 }
